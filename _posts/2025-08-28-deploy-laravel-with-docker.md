@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Deploy Laravel dengan Docker"
-date: 2025-04-05 12:00:00 +0700
+date: 2025-08-28 12:00:00 +0700
 categories: laravel docker tutorial
 ---
 
