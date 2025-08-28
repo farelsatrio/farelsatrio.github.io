@@ -70,4 +70,16 @@ Menggunakan % agar bisa diakses dari ip luar
 
 ### E. Deploy Laravel
 
-- Buat 'Dockerfile'
+- Buat `Dockerfile`
+
+- Buat file 000-default.conf untuk konfigurasi apache  agar laravel bisa diakses
+
+- Build image dari dockerfile yang sudah dibuat
+
+- Menjalankan container dari image yang sudah di build
+
+- Cek aplikasi menggunakan browser
+![Cek Brower](/assets/images/login.png)
+
+- Dashboard
+![Dasboard](/assets/images/dashboard.png)
