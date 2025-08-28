@@ -35,7 +35,8 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 ![Topologi Laravel Docker](/assets/images/topologi.png)
 
 ### B. Persyaratan
-
+```bash
+aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
 - Ubuntu 22.04 (virtualbox)
 - Docker
 - Mysql-Server
