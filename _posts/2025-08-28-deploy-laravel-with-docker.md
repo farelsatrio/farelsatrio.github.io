@@ -7,7 +7,7 @@ tags: [laravel, docker, deployment, php]
 author: Farel Satrio Pratama
 excerpt: "Cara deploy aplikasi Laravel menggunakan Docker agar bisa berjalan diberbagai environment."
 image:
-  path: /images/laravel-docker.png
+  path: /assets/images/laravel-docker.png
   alt: Deploy Laravel dengan Docker
 ---
 
