@@ -32,7 +32,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 ## 3. Praktik
 
 ### A. Topologi
-![Topologi Laravel Docker](/assets/images/laravel-docker.png)
+![Topologi Laravel Docker](/assets/images/topologi.png)
 
 ### B. Persyaratan
 
