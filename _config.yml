@@ -1,11 +1,14 @@
 #
 # This file contains configuration flags to customize your site
 #
+# Build settings
 plugins:
   - jekyll-remote-theme
 
+# Remote theme configuration
 remote_theme: cotes2020/jekyll-theme-chirpy
-theme: minima
+lang: en
+timezone: Asia/Jakarta
 # Name of your site (displayed in the header)
 name: Farel Satrio Pratama
 
