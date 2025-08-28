@@ -32,8 +32,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 ## 3. Praktik
 
 ### A. Topologi
-image:
-   path: /images/laravel-docker.png
+![Topologi Laravel Docker](/assets/images/laravel-docker.png)
 
 ### B. Persyaratan
 
@@ -43,7 +42,7 @@ image:
 
 ### C. Siapkan source code
 
-- Source code https://github.com/farelsatrio/sistem-informasi-gudang-berbasis-web-laravel.git
+- Source code: [Download di sini](https://github.com/farelsatrio/sistem-informasi-gudang-berbasis-web-laravel.git)
 
 - Tambahkan baris `<meta name="csrf-token" content="{{ csrf_token() }}" />` ke file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/resources/views/welcome.blade.php`
   Karena aplikasi menggunakan AJAX untuk berkomunikasi dengan backend Laravel, token CSRF diperlukan untuk memastikan permintaan aman.
