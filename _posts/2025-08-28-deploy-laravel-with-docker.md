@@ -35,8 +35,6 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 ![Topologi Laravel Docker](/assets/images/topologi.png)
 
 ### B. Persyaratan
-```bash
-aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
 
 - Ubuntu 22.04 (virtualbox)
 - Docker
@@ -54,22 +52,22 @@ aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-
   ```php
   'strict' => false,
 
-  
-### 2. **Kode Dockerfile**
+- Edit file sistem-informasi-gudang-berbasis-web-laravel/database/db_gudang.sql. Ubah pada bagian trigger seperti di bawah untuk  memisahkan akhir blok trigger (END) dari akhir perintah SQL (;)
 
-```markdown
-```dockerfile
-FROM php:7.4-apache
-RUN apt update
-RUN docker-php-ext-install pdo_mysql
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
-RUN a2enmod rewrite
-COPY sistem-informasi-gudang-berbasis-web-laravel /var/www/
-WORKDIR /var/www/si_gudang/
-RUN sed -i 's/DB_HOST=127.0.0.1/DB_HOST=10.10.10.123/g' .env && \
-    sed -i 's/DB_USERNAME=root/DB_USERNAME=farel/g' .env && \
-    sed -i 's/DB_PASSWORD=/DB_PASSWORD=farel123/g' .env
-RUN chmod -R 775 /var/www/si_gudang && \
-    chown -R www-data:www-data /var/www/si_gudang
-CMD ["apache2-foreground"]
+### D. Setup Database
+
+- Masuk ke mysql
+
+- Membuat database dengan nama db_gudang 
+db_gudang digunakan untuk database app laravel
+
+- Membuat user mysql bernama farel dengan password farel123
+Menggunakan % agar bisa diakses dari ip luar
+
+- Memberikan hak akses database  db_gudang ke user farel
+
+- Simpan perubahan
+
+### E. Deploy Laravel
+
+- Buat 'Dockerfile'
