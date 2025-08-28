@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Deploy Laravel dengan Docker"
+title: "Deploy Laravel menggunakan Docker"
 date: 2025-08-28 12:00:00 +0700
 categories: [Laravel, Docker, Tutorial]
 tags: [laravel, docker, deployment, php]
 author: Farel Satrio Pratama
-excerpt: "Pelajari cara deploy aplikasi Laravel menggunakan Docker untuk environment yang konsisten dan mudah dijalankan di mana saja."
+excerpt: "Cara deploy aplikasi Laravel menggunakan Docker agar bisa berjalan diberbagai environment."
 image:
-  path: /assets/images/docker-laravel-banner.jpg
+  path: /images/laravel-docker.png
   alt: Deploy Laravel dengan Docker
 ---
 
@@ -33,7 +33,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 
 ### A. Topologi
 
-### B. Setup Environment
+### B. Persyaratan
 
 - Ubuntu 22.04 (virtualbox)
 - Docker
