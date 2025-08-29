@@ -249,15 +249,11 @@ Menggunakan % agar bisa diakses dari ip luar
   -	-p 80:80 > Buka port 80 di host arahkan ke port 80 di container 
   - exam > Nama image yang digunakan
 
-  ```sql
-  GRANT ALL PRIVILEGES ON db_gudang.* TO &apos;farel&apos;@&apos;%&apos;;
-  ```
-
-  ``
-  fa
-  ``
 - Cek aplikasi menggunakan browser
 ![Cek Brower](/assets/images/login.png)
+  login menggunakan:
+    username: admin
+    password: admin
 
 - Dashboard
 ![Dasboard](/assets/images/dashboard.png)
