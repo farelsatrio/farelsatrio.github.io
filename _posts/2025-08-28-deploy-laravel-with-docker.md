@@ -252,6 +252,10 @@ Menggunakan % agar bisa diakses dari ip luar
   ```sql
   GRANT ALL PRIVILEGES ON db_gudang.* TO &apos;farel&apos;@&apos;%&apos;;
   ```
+
+  ``
+  fa
+  ``
 - Cek aplikasi menggunakan browser
 ![Cek Brower](/assets/images/login.png)
 
