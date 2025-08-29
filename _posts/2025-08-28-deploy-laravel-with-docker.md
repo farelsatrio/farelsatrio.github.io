@@ -50,6 +50,8 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
     </code></pre>
   </div>
 
+
+
 - Edit file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/config/database.php`
   Ubah bagian `strict` menjadi `false` untuk mencegah terjadinya error saat menyimpan data:
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
@@ -57,8 +59,9 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
   docker build -t exam .
     </code></pre>
   </div>
+
 - Edit file sistem-informasi-gudang-berbasis-web-laravel/database/db_gudang.sql. Ubah pada bagian trigger seperti di bawah untuk  memisahkan akhir blok trigger (END) dari akhir perintah SQL (;)
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 5px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
   <pre style="margin: 0;"><code class="language-bash">
   DROP TRIGGER IF EXISTS barang_masuk;
   DELIMITER $$
@@ -202,14 +205,14 @@ Menggunakan % agar bisa diakses dari ip luar
   </div>
 
 - Build image dari dockerfile yang sudah dibuat
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 3px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   docker build -t exam .
     </code></pre>
   </div>
 
 - Menjalankan container dari image yang sudah di build
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 2px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   docker run -d –-name  exam -p 80:80 exam
     </code></pre>
