@@ -75,9 +75,11 @@ Menggunakan % agar bisa diakses dari ip luar
 - Buat file 000-default.conf untuk konfigurasi apache  agar laravel bisa diakses
 
 - Build image dari dockerfile yang sudah dibuat
-```
+<div style="background-color: #000000; color: white; padding: 10px; border-radius: 6px; overflow-x: auto;">
+  <pre style="margin: 0;"><code class="language-bash">
 eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster my-cluster --approve
-```
+  </code></pre>
+</div>
 
 - Menjalankan container dari image yang sudah di build
 
