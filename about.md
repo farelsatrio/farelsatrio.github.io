@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Hallo
+Hallo, Saya Farel Satrio Pratama
 
 ### More Information
 
