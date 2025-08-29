@@ -1,0 +1,45 @@
+/* Scroll to Top Button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+  
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+}
+
+.scroll-to-top svg {
+  width: 24px;
+  height: 24px;
+  fill: #333;
+}
+
+/* Ganti warna blok kode */
+.highlight {
+  background-color: #000000 !important; /* Hitam */
+  color: #ffffff !important;           /* Putih */
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+/* Syntax Highlighting Tambahan */
+.highlight .c { color: #888888; }    /* Komentar */
+.highlight .err { color: #ff0000; }  /* Error */
+.highlight .k { color: #ff6600; }     /* Keyword */
+.highlight .s { color: #66cc66; }     /* String */
+.highlight .nb { color: #0066ff; }    /* Built-in */
+.highlight .n { color: #ffffff; }     /* Nama Variabel */
