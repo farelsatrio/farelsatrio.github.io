@@ -108,7 +108,8 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
     <pre style="margin: 0;"><code class="language-bash">
   sudo mysql -u root
     </code></pre>
-  </div>
+  </div><br><br>
+  
 
 
 - Membuat database dengan nama db_gudang 
@@ -117,7 +118,7 @@ db_gudang digunakan untuk database app laravel
     <pre style="margin: 0;"><code class="language-bash">
   CREATE DATABASE db_gudang;
     </code></pre>
-  </div>
+  </div><br><br>
 
 
 - Membuat user mysql bernama farel dengan password farel123
@@ -130,7 +131,7 @@ Menggunakan % agar bisa diakses dari ip luar
 
 
 - Memberikan hak akses database  db_gudang ke user farel
-  <div style="background-color: #000; color: white; padding: 0px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   GRANT ALL PRIVILEGES ON db_gudang.* TO ‘farel’@’%’;
     </code></pre>
