@@ -5,7 +5,7 @@ date: 2025-08-28 12:00:00 +0700
 categories: [Laravel, Docker, Tutorial]
 tags: [laravel, docker, deployment, php]
 author: Farel Satrio Pratama
-excerpt: "Cara deploy aplikasi Laravel menggunakan Docker agar bisa berjalan diberbagai environment."
+excerpt: "Deploy aplikasi Laravel menggunakan Docker agar bisa berjalan diberbagai environment."
 image: /assets/images/laravel-docker.png
 ---
 ![laravel-docker](/assets/images/laravel-docker.png)
