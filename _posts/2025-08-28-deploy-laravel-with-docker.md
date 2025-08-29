@@ -44,7 +44,6 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 
 - Tambahkan baris `<meta name="csrf-token" content="{{ csrf_token() }}" />` ke file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/resources/views/welcome.blade.php`
   Karena aplikasi menggunakan AJAX untuk berkomunikasi dengan backend Laravel, token CSRF diperlukan untuk memastikan permintaan aman.
-
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
     <pre style="margin: 0;"><code class="language-html">
   <meta name=&quot;csrf-token&quot; content=&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;>
@@ -54,7 +53,6 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 
 - Edit file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/config/database.php`
   Ubah bagian `strict` menjadi `false` untuk mencegah terjadinya error saat menyimpan data:
-
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
     <pre style="margin: 0;"><code class="language-bash">
   docker build -t exam .
@@ -112,6 +110,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
     </code></pre>
   </div>
 
+
 - Membuat database dengan nama db_gudang 
 db_gudang digunakan untuk database app laravel
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
@@ -119,6 +118,7 @@ db_gudang digunakan untuk database app laravel
   CREATE DATABASE db_gudang;
     </code></pre>
   </div>
+
 
 - Membuat user mysql bernama farel dengan password farel123
 Menggunakan % agar bisa diakses dari ip luar
@@ -128,12 +128,14 @@ Menggunakan % agar bisa diakses dari ip luar
     </code></pre>
   </div>
 
+
 - Memberikan hak akses database  db_gudang ke user farel
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 1px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   GRANT ALL PRIVILEGES ON db_gudang.* TO ‘farel’@’%’;
     </code></pre>
   </div>
+
 
 - Simpan perubahan
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
@@ -142,6 +144,7 @@ Menggunakan % agar bisa diakses dari ip luar
     </code></pre>
   </div>
 
+
 - Edit file /etc/mysql/mysql.conf.d/mysqld.cnf agar bisa menerima koneksi dari semua alamat IP
   Edit bagian bind-address menjadi seperti berikut:
     <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
@@ -149,6 +152,7 @@ Menggunakan % agar bisa diakses dari ip luar
   bind-address            = 0.0.0.0
     </code></pre>
   </div>
+
 
 - Import database
     <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
