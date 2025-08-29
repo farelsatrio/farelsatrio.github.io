@@ -6,9 +6,7 @@ categories: [Laravel, Docker, Tutorial]
 tags: [laravel, docker, deployment, php]
 author: Farel Satrio Pratama
 excerpt: "Cara deploy aplikasi Laravel menggunakan Docker agar bisa berjalan diberbagai environment."
-image:
-  path: /assets/images/laravel-docker.png
-  alt: Deploy Laravel dengan Docker
+image: /assets/images/laravel-docker.png
 ---
 
 ## 1. Latar Belakang
@@ -75,7 +73,7 @@ Menggunakan % agar bisa diakses dari ip luar
 - Buat file 000-default.conf untuk konfigurasi apache  agar laravel bisa diakses
 
 - Build image dari dockerfile yang sudah dibuat
-<div style="background-color: #000000; color: white; padding: 10px; border-radius: 6px; overflow-x: auto;">
+<div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 14px; line-height: 1.4;">
   <pre style="margin: 0;"><code class="language-bash">
 eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster my-cluster --approve
   </code></pre>
