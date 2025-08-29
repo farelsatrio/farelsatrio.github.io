@@ -58,7 +58,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
     </code></pre>
   </div>
 - Edit file sistem-informasi-gudang-berbasis-web-laravel/database/db_gudang.sql. Ubah pada bagian trigger seperti di bawah untuk  memisahkan akhir blok trigger (END) dari akhir perintah SQL (;)
-  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 18px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
   <pre style="margin: 0;"><code class="language-bash">
   DROP TRIGGER IF EXISTS barang_masuk;
   DELIMITER $$
@@ -102,7 +102,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 ### D. Setup Database
 
 - Masuk ke mysql
-  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 18px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   sudo mysql -u root
     </code></pre>
@@ -110,7 +110,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 
 - Membuat database dengan nama db_gudang 
 db_gudang digunakan untuk database app laravel
-  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 18px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   CREATE DATABASE db_gudang;
     </code></pre>
@@ -147,7 +147,7 @@ Menggunakan % agar bisa diakses dari ip luar
   </div>
 
 - Import database
-    <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 18px; line-height: 1.4;">
+    <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   sudo mysql -u root -p db_gudang < db_gudang.sql
     </code></pre>
@@ -156,7 +156,7 @@ Menggunakan % agar bisa diakses dari ip luar
 ### E. Deploy Laravel
 
 - Buat `Dockerfile`
-  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 18px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   FROM php:7.4-apache
 
@@ -182,7 +182,7 @@ Menggunakan % agar bisa diakses dari ip luar
   </div>
 
 - Buat file 000-default.conf untuk konfigurasi apache  agar laravel bisa diakses
-  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 18px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   <VirtualHost *:80>
                 ServerAdmin webmaster@localhost
@@ -203,14 +203,14 @@ Menggunakan % agar bisa diakses dari ip luar
   </div>
 
 - Build image dari dockerfile yang sudah dibuat
-  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 18px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   docker build -t exam .
     </code></pre>
   </div>
 
 - Menjalankan container dari image yang sudah di build
-  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 18px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 12px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   docker run -d –-name  exam -p 80:80 exam
     </code></pre>
