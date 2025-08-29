@@ -1,0 +1,12 @@
+/* Custom CSS untuk Chirpy - Ubah blok kode jadi hitam */
+.highlight, .highlight pre, .highlight code {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.highlight .c { color: #888888; }    /* komentar */
+.highlight .err { color: #ff0000; }  /* error */
+.highlight .k { color: #ff6600; }    /* keyword */
+.highlight .s { color: #66cc66; }    /* string */
+.highlight .nb { color: #0066ff; }   /* built-in */
+.highlight .n { color: #ffffff; }    /* nama */

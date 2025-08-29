@@ -76,7 +76,6 @@ Menggunakan % agar bisa diakses dari ip luar
 
 - Build image dari dockerfile yang sudah dibuat
 ```
-```bash
 eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster my-cluster --approve
 ```
 
