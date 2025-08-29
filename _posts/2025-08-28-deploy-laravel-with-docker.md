@@ -8,7 +8,7 @@ author: Farel Satrio Pratama
 excerpt: "Cara deploy aplikasi Laravel menggunakan Docker agar bisa berjalan diberbagai environment."
 image: /assets/images/laravel-docker.png
 ---
-
+![laravel-docker](/assets/images/laravel-docker.png)
 ## 1. Latar Belakang
 
 Di dunia pengembangan aplikasi, kita sering menghadapi tantangan besar ketika aplikasi yang berjalan lancar di laptop harus dipindahkan ke server atau environment lain. Perbedaan versi, sistem operasi, hingga konfigurasi server bisa menyebabkan aplikasi error atau bahkan tidak dapat berjalan sama sekali. Bayangkan betapa repotnya harus mengatur ulang semua dependensi agar seragam di setiap environment.
@@ -44,11 +44,13 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 
 - Tambahkan baris `<meta name="csrf-token" content="{{ csrf_token() }}" />` ke file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/resources/views/welcome.blade.php`
   Karena aplikasi menggunakan AJAX untuk berkomunikasi dengan backend Laravel, token CSRF diperlukan untuk memastikan permintaan aman.
-<div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 14px; line-height: 1.4;">
-  <pre style="margin: 0;"><code class="language-html">
-<meta name=&quot;csrf-token&quot; content=&quot;{{ csrf_token() }}&quot;>
-  </code></pre>
-</div>
+    ```html
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <div style="background-color: #000; color: white; padding: 12px 16px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
+    <pre style="margin: 0;"><code class="language-html">
+  <meta name=&quot;csrf-token&quot; content=&quot;{{ csrf_token() }}&quot;>
+    </code></pre>
+  </div>
 
 - Edit file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/config/database.php`
   Ubah bagian `strict` menjadi `false` untuk mencegah terjadinya error saat menyimpan data:
