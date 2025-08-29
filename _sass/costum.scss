@@ -1,0 +1,15 @@
+// Ganti warna blok kode menjadi hitam
+.highlight {
+  background-color: #000000 !important; /* Hitam */
+  color: #ffffff !important;           /* Teks putih */
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+// Atur warna syntax highlighting
+.highlight .c { color: #888888; } /* komentar */
+.highlight .err { color: #ff0000; } /* error */
+.highlight .k { color: #ff6600; }  /* keyword */
+.highlight .s { color: #66cc66; }  /* string */
+.highlight .nb { color: #0066ff; } /* built-in */
+.highlight .n { color: #ffffff; }  /* nama variabel */
