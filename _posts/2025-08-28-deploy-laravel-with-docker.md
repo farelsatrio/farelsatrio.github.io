@@ -109,8 +109,6 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
   sudo mysql -u root
     </code></pre>
   </div><br><br>
-  
-
 
 - Membuat database dengan nama db_gudang 
 db_gudang digunakan untuk database app laravel
@@ -120,22 +118,20 @@ db_gudang digunakan untuk database app laravel
     </code></pre>
   </div><br><br>
 
-
 - Membuat user mysql bernama farel dengan password farel123
 Menggunakan % agar bisa diakses dari ip luar
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   CREATE USER ‘farel’@’%’ IDENTIFIED BY ‘farel123’;
     </code></pre>
-  </div>
-
+  </div><br><br>
 
 - Memberikan hak akses database  db_gudang ke user farel
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   GRANT ALL PRIVILEGES ON db_gudang.* TO ‘farel’@’%’;
     </code></pre>
-  </div>
+  </div><br><br>
 
 
 - Simpan perubahan
@@ -143,7 +139,7 @@ Menggunakan % agar bisa diakses dari ip luar
     <pre style="margin: 0;"><code class="language-bash">
   FLUSH PRIVILEGES;
     </code></pre>
-  </div>
+  </div><br><br>
 
 
 - Edit file /etc/mysql/mysql.conf.d/mysqld.cnf agar bisa menerima koneksi dari semua alamat IP
@@ -152,7 +148,7 @@ Menggunakan % agar bisa diakses dari ip luar
     <pre style="margin: 0;"><code class="language-bash">
   bind-address            = 0.0.0.0
     </code></pre>
-  </div>
+  </div><br><br>
 
 
 - Import database
@@ -160,7 +156,7 @@ Menggunakan % agar bisa diakses dari ip luar
     <pre style="margin: 0;"><code class="language-bash">
   sudo mysql -u root -p db_gudang < db_gudang.sql
     </code></pre>
-  </div>
+  </div><br><br>
 
 ### E. Deploy Laravel
 
