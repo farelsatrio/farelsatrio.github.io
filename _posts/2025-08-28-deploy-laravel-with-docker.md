@@ -46,7 +46,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
   Karena aplikasi menggunakan AJAX untuk berkomunikasi dengan backend Laravel, token CSRF diperlukan untuk memastikan permintaan aman.
   <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 14px; line-height: 1.4;">
   <pre style="margin: 0;"><code class="language-bash">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+  '<meta name="csrf-token" content="{{ csrf_token() }}">'
   </code></pre>
   </div>
 
@@ -158,51 +158,51 @@ Menggunakan % agar bisa diakses dari ip luar
 ### E. Deploy Laravel
 
 - Buat `Dockerfile`
-<div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 14px; line-height: 1.4;">
-  <pre style="margin: 0;"><code class="language-bash">
-FROM php:7.4-apache
+  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 14px; line-height: 1.4;">
+    <pre style="margin: 0;"><code class="language-bash">
+  FROM php:7.4-apache
 
-RUN apt update
-RUN docker-php-ext-install pdo_mysql
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
-RUN a2enmod rewrite
-COPY sistem-informasi-gudang-berbasis-web-laravel /var/www/
-WORKDIR /var/www/si_gudang/
+  RUN apt update
+  RUN docker-php-ext-install pdo_mysql
+  COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+  COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+  RUN a2enmod rewrite
+  COPY sistem-informasi-gudang-berbasis-web-laravel /var/www/
+  WORKDIR /var/www/si_gudang/
 
-RUN sed -i 's/DB_HOST=127.0.0.1/DB_HOST=10.10.10.123/g' .env && \
-sed -i 's/DB_USERNAME=root/DB_USERNAME=farel/g' .env && \
-sed -i 's/DB_PASSWORD=/DB_PASSWORD=farel123/g' .env
+  RUN sed -i 's/DB_HOST=127.0.0.1/DB_HOST=10.10.10.123/g' .env && \
+  sed -i 's/DB_USERNAME=root/DB_USERNAME=farel/g' .env && \
+  sed -i 's/DB_PASSWORD=/DB_PASSWORD=farel123/g' .env
 
 
-RUN chmod -R 775 /var/www/si_gudang && \
-chown -R www-data:www-data /var/www/si_gudang
+  RUN chmod -R 775 /var/www/si_gudang && \
+  chown -R www-data:www-data /var/www/si_gudang
 
-CMD ["apache2-foreground"]
+  CMD ["apache2-foreground"]
 
-  </code></pre>
-</div>
+    </code></pre>
+  </div>
 
 - Buat file 000-default.conf untuk konfigurasi apache  agar laravel bisa diakses
-<div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 14px; line-height: 1.4;">
-  <pre style="margin: 0;"><code class="language-bash">
-<VirtualHost *:80>
-              ServerAdmin webmaster@localhost
-              DocumentRoot /var/www/si_gudang/public
+  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 14px; line-height: 1.4;">
+    <pre style="margin: 0;"><code class="language-bash">
+  <VirtualHost *:80>
+                ServerAdmin webmaster@localhost
+                DocumentRoot /var/www/si_gudang/public
 
-              <Directory /var/www/si_gudang/public>
-              Options Indexes FollowSymLinks
-              AllowOverride All
-              Require all granted
-              </Directory>
+                <Directory /var/www/si_gudang/public>
+                Options Indexes FollowSymLinks
+                AllowOverride All
+                Require all granted
+                </Directory>
 
-              ErrorLog ${APACHE_LOG_DIR}/error.log
-               CustomLog ${APACHE_LOG_DIR}/access.log combined
+                ErrorLog ${APACHE_LOG_DIR}/error.log
+                CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-</VirtualHost>
+  </VirtualHost>
 
-  </code></pre>
-</div>
+    </code></pre>
+  </div>
 
 - Build image dari dockerfile yang sudah dibuat
   <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 4px; overflow-x: auto; font-size: 14px; line-height: 1.4;">
