@@ -44,17 +44,15 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 
 - Tambahkan baris `<meta name="csrf-token" content="{{ csrf_token() }}" />` ke file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/resources/views/welcome.blade.php`
   Karena aplikasi menggunakan AJAX untuk berkomunikasi dengan backend Laravel, token CSRF diperlukan untuk memastikan permintaan aman.
-    ```html
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <div style="background-color: #000; color: white; padding: 12px 16px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
-    <pre style="margin: 0;"><code class="language-html">
-  <meta name=&quot;csrf-token&quot; content=&quot;{{ csrf_token() }}&quot;>
-    </code></pre>
-  </div>
+<div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
+  <pre style="margin: 0;"><code class="language-html">
+<meta name=&quot;csrf-token&quot; content=&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;>
+  </code></pre>
+</div>
 
 - Edit file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/config/database.php`
   Ubah bagian `strict` menjadi `false` untuk mencegah terjadinya error saat menyimpan data:
-  <div style="background-color: #000; color: white; padding: 12px 16px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
+  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
     <pre style="margin: 0;"><code class="language-bash">
   docker build -t exam .
     </code></pre>
