@@ -130,7 +130,7 @@ Menggunakan % agar bisa diakses dari ip luar
 
 
 - Memberikan hak akses database  db_gudang ke user farel
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 1px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 0px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   GRANT ALL PRIVILEGES ON db_gudang.* TO ‘farel’@’%’;
     </code></pre>
