@@ -141,7 +141,6 @@ Menggunakan % agar bisa diakses dari ip luar
     </code></pre>
   </div><br><br>
 
-
 - Edit file /etc/mysql/mysql.conf.d/mysqld.cnf agar bisa menerima koneksi dari semua alamat IP
   Edit bagian bind-address menjadi seperti berikut:
     <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
@@ -149,8 +148,6 @@ Menggunakan % agar bisa diakses dari ip luar
   bind-address            = 0.0.0.0
     </code></pre>
   </div><br><br>
-
-
 - Import database
     <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
@@ -182,7 +179,6 @@ Menggunakan % agar bisa diakses dari ip luar
   chown -R www-data:www-data /var/www/si_gudang
 
   CMD ["apache2-foreground"]
-
     </code></pre>
   </div>
 
