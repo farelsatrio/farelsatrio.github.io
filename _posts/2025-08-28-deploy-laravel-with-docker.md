@@ -44,6 +44,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 
 - Tambahkan baris `<meta name="csrf-token" content="{{ csrf_token() }}" />` ke file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/resources/views/welcome.blade.php`
   Karena aplikasi menggunakan AJAX untuk berkomunikasi dengan backend Laravel, token CSRF diperlukan untuk memastikan permintaan aman.
+
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
     <pre style="margin: 0;"><code class="language-html">
   <meta name=&quot;csrf-token&quot; content=&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;>
@@ -51,17 +52,18 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
   </div>
 
 
-
 - Edit file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/config/database.php`
   Ubah bagian `strict` menjadi `false` untuk mencegah terjadinya error saat menyimpan data:
+
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
     <pre style="margin: 0;"><code class="language-bash">
   docker build -t exam .
     </code></pre>
   </div>
 
+
 - Edit file sistem-informasi-gudang-berbasis-web-laravel/database/db_gudang.sql. Ubah pada bagian trigger seperti di bawah untuk  memisahkan akhir blok trigger (END) dari akhir perintah SQL (;)
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 5px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
   <pre style="margin: 0;"><code class="language-bash">
   DROP TRIGGER IF EXISTS barang_masuk;
   DELIMITER $$
@@ -104,7 +106,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 ### D. Setup Database
 
 - Masuk ke mysql
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   sudo mysql -u root
     </code></pre>
@@ -112,7 +114,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 
 - Membuat database dengan nama db_gudang 
 db_gudang digunakan untuk database app laravel
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   CREATE DATABASE db_gudang;
     </code></pre>
@@ -120,21 +122,21 @@ db_gudang digunakan untuk database app laravel
 
 - Membuat user mysql bernama farel dengan password farel123
 Menggunakan % agar bisa diakses dari ip luar
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   CREATE USER ‘farel’@’%’ IDENTIFIED BY ‘farel123’;
     </code></pre>
   </div>
 
 - Memberikan hak akses database  db_gudang ke user farel
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 4px; overflow-x: auto; font-size: 1px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 1px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   GRANT ALL PRIVILEGES ON db_gudang.* TO ‘farel’@’%’;
     </code></pre>
   </div>
 
 - Simpan perubahan
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   FLUSH PRIVILEGES;
     </code></pre>
@@ -142,14 +144,14 @@ Menggunakan % agar bisa diakses dari ip luar
 
 - Edit file /etc/mysql/mysql.conf.d/mysqld.cnf agar bisa menerima koneksi dari semua alamat IP
   Edit bagian bind-address menjadi seperti berikut:
-    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   bind-address            = 0.0.0.0
     </code></pre>
   </div>
 
 - Import database
-    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   sudo mysql -u root -p db_gudang < db_gudang.sql
     </code></pre>
@@ -158,7 +160,7 @@ Menggunakan % agar bisa diakses dari ip luar
 ### E. Deploy Laravel
 
 - Buat `Dockerfile`
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   FROM php:7.4-apache
 
@@ -184,7 +186,7 @@ Menggunakan % agar bisa diakses dari ip luar
   </div>
 
 - Buat file 000-default.conf untuk konfigurasi apache  agar laravel bisa diakses
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   <VirtualHost *:80>
                 ServerAdmin webmaster@localhost
@@ -205,14 +207,14 @@ Menggunakan % agar bisa diakses dari ip luar
   </div>
 
 - Build image dari dockerfile yang sudah dibuat
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   docker build -t exam .
     </code></pre>
   </div>
 
 - Menjalankan container dari image yang sudah di build
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 4px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   docker run -d –-name  exam -p 80:80 exam
     </code></pre>
