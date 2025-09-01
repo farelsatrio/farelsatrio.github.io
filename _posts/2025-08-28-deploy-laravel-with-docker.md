@@ -41,7 +41,6 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 ### C. Siapkan source code
 
 - Source code: [Download di sini](https://github.com/farelsatrio/sistem-informasi-gudang-berbasis-web-laravel.git)
-
 - Tambahkan baris `<meta name="csrf-token" content="{{ csrf_token() }}" />` ke file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/resources/views/welcome.blade.php`
   Karena aplikasi menggunakan AJAX untuk berkomunikasi dengan backend Laravel, token CSRF diperlukan untuk memastikan permintaan aman.
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
@@ -49,8 +48,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
   <meta name=&quot;csrf-token&quot; content=&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;>
     </code></pre>
   </div>
-
-
+  <br><br>
 - Edit file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/config/database.php`
   Ubah bagian `strict` menjadi `false` untuk mencegah terjadinya error saat menyimpan data:
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
@@ -58,8 +56,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
   'strict' => false,
     </code></pre>
   </div>
-
-
+  <br><br>
 - Edit file `sistem-informasi-gudang-berbasis-web-laravel/database/db_gudang.sql`. Ubah pada bagian trigger seperti di bawah untuk  memisahkan akhir blok trigger (END) dari akhir perintah SQL (;)
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
   <pre style="margin: 0;"><code class="language-bash">
@@ -109,23 +106,20 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
     <pre style="margin: 0;"><code class="language-bash">
   sudo mysql -u root
     </code></pre>
-  </div>
-
+  </div><br><br>
 - Membuat database dengan nama `db_gudang` digunakan untuk database app laravel
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   CREATE DATABASE db_gudang;
     </code></pre>
-  </div>
-
+  </div><br><br>
 - Membuat user mysql bernama `farel` dengan password `farel123`.
 Menggunakan % agar bisa diakses dari ip luar
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   CREATE USER ‘farel’@’%’ IDENTIFIED BY ‘farel123’;
     </code></pre>
-  </div>
-
+  </div><br><br>
 - Memberikan hak akses database `db_gudang` ke user `farel`
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px margin-bottom: 12px;; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
@@ -150,7 +144,7 @@ Menggunakan % agar bisa diakses dari ip luar
     <pre style="margin: 0;"><code class="language-bash">
   sudo mysql -u root -p db_gudang < db_gudang.sql
     </code></pre>
-  </div><br><br>
+  </div>
 
 ### E. Deploy Laravel
 
@@ -192,8 +186,7 @@ Menggunakan % agar bisa diakses dari ip luar
   - `RUN chmod -R 775 /var/www/si_gudang && \` : Mengubah hak akses file agar bisa diakses oleh Apache
   - `chown -R www-data:www-data /var/www/si_gudang` : Mengubah kepemilikan file ke user www-data (user Apache)
   - `CMD ["apache2-foreground"]` : Jalankan Apache di foreground agar container tetap jalan . Secara default, Apache berjalan di background dan container menganggap tidak ada proses yang aktif, lalu otomatis berhenti. Dengan apache2-foreground, Apache dijalankan sebagai proses utama di foreground, sehingga container tetap berjalan selama aplikasi aktif. 
-
-
+  <br><br>
 - Buat file 000-default.conf untuk konfigurasi apache  agar laravel bisa diakses
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
@@ -221,8 +214,7 @@ Menggunakan % agar bisa diakses dari ip luar
   - `Require all granted` : Mengizinkan semua pengguna untuk mengakses direktori ini
   - `ErrorLog ${APACHE_LOG_DIR}/error.log` : Menentukan lokasi file log error
   - `CustomLog ${APACHE_LOG_DIR}/access.log` combined : Menentukan lokasi log akses
-
-
+  <br><br>
 - Build image dari dockerfile yang sudah dibuat
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
@@ -232,8 +224,7 @@ Menggunakan % agar bisa diakses dari ip luar
   -	`docker build` : perintah untuk build image
   -	`-t exam` : memberi nama pada image
   -	`.`  :  lokasi dockerfile  berada di directory saat ini
-
-
+  <br><br>
 - Menjalankan container dari image yang sudah di build
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
@@ -245,7 +236,7 @@ Menggunakan % agar bisa diakses dari ip luar
   -	`--name exam` > buat nama container exam
   -	`-p 80:80` > Buka port 80 di host arahkan ke port 80 di container 
   - `exam` > Nama image yang digunakan
-
+  <br><br>
 - Cek aplikasi menggunakan browser
 ![Cek Brower](/assets/images/login.png)
   login menggunakan:
