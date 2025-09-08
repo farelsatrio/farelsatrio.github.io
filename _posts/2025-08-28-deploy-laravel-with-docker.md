@@ -126,36 +126,36 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
     </div>
 4. Memberikan hak akses database `db_gudang` ke user `farel`
 
-  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
-    <pre style="margin: 0;"><code class="language-sql">
-GRANT ALL PRIVILEGES ON db_gudang.* TO 'farel'@'%';
-    </code></pre>
-  </div>
+    <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
+      <pre style="margin: 0;"><code class="language-sql">
+  GRANT ALL PRIVILEGES ON db_gudang.* TO 'farel'@'%';
+      </code></pre>
+    </div>
 
 5. Simpan perubahan
 
-  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
-    <pre style="margin: 0;"><code class="language-sql">
-FLUSH PRIVILEGES;
-    </code></pre>
-  </div>
+    <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
+      <pre style="margin: 0;"><code class="language-sql">
+  FLUSH PRIVILEGES;
+      </code></pre>
+    </div>
 
 6. Edit file `/etc/mysql/mysql.conf.d/mysqld.cnf` agar bisa menerima koneksi dari semua alamat IP.  
    Ubah bagian `bind-address` menjadi:
 
-  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
-    <pre style="margin: 0;"><code class="language-conf">
-bind-address = 0.0.0.0
-    </code></pre>
-  </div>
+    <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
+      <pre style="margin: 0;"><code class="language-conf">
+  bind-address = 0.0.0.0
+      </code></pre>
+    </div>
 
 7. Import database
 
-  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
-    <pre style="margin: 0;"><code class="language-bash">
-sudo mysql -u root -p db_gudang < db_gudang.sql
-    </code></pre>
-  </div>
+    <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
+      <pre style="margin: 0;"><code class="language-bash">
+  sudo mysql -u root -p db_gudang < db_gudang.sql
+      </code></pre>
+    </div>
 
 ### E. Deploy Laravel
 
