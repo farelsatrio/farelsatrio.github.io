@@ -43,11 +43,11 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 1. Source code: [Download di sini](https://github.com/farelsatrio/sistem-informasi-gudang-berbasis-web-laravel.git)
 2. Tambahkan baris `<meta name="csrf-token" content="{{ csrf_token() }}" />` ke file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/resources/views/welcome.blade.php`
   Karena aplikasi menggunakan AJAX untuk berkomunikasi dengan backend Laravel, token CSRF diperlukan untuk memastikan permintaan aman.
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
-    <pre style="margin: 0;"><code class="language-html">
-  <meta name=&quot;csrf-token&quot; content=&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;>
-    </code></pre>
-  </div>
+    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
+      <pre style="margin: 0;"><code class="language-html">
+    <meta name=&quot;csrf-token&quot; content=&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;>
+      </code></pre>
+    </div>
 3. Edit file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/config/database.php`
   Ubah bagian `strict` menjadi `false` untuk mencegah terjadinya error saat menyimpan data:
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
