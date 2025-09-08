@@ -184,7 +184,8 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
     - `sed -i 's/DB_PASSWORD=/DB_PASSWORD=farel123/g' .env `: Ganti nilai DB_PASSWORD
     - `RUN chmod -R 775 /var/www/si_gudang && \` : Mengubah hak akses file agar bisa diakses oleh Apache
     - `chown -R www-data:www-data /var/www/si_gudang` : Mengubah kepemilikan file ke user www-data (user Apache)
-    - `CMD ["apache2-foreground"]` : Jalankan Apache di foreground agar container tetap jalan . Secara default, Apache berjalan di background dan container menganggap tidak ada proses yang aktif, lalu otomatis berhenti. Dengan apache2-foreground, Apache dijalankan sebagai proses utama di foreground, sehingga container tetap berjalan selama aplikasi aktif. 
+    - `CMD ["apache2-foreground"]` : Jalankan Apache di foreground agar container tetap jalan . Secara default, Apache berjalan di background dan container menganggap tidak ada proses yang aktif, lalu otomatis berhenti. Dengan apache2-foreground, Apache dijalankan sebagai proses utama di foreground, sehingga container tetap berjalan selama aplikasi aktif.
+    <br><br> 
 2. Buat file 000-default.conf untuk konfigurasi apache  agar laravel bisa diakses
     <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
       <pre style="margin: 0;"><code class="language-bash">
@@ -204,15 +205,15 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
     </VirtualHost>
       </code></pre>
     </div>
-  - `<VirtualHost *:80> `: menerima permintaan di semua alamat IP pada port 80 (HTTP)
-  - `DocumentRoot /var/www/si_gudang/public` : Menetapkan direktori utama apache
-  - `<Directory /var/www/si_gudang/public` : aturan konfigurasi folder public
-  - `Options Indexes FollowSymLinks` : Mengizinkan daftar isi direktori (jika tidak ada index) dan mengikuti symbolic link
-  - `AllowOverride All` : Mengizinkan file .htaccess
-  - `Require all granted` : Mengizinkan semua pengguna untuk mengakses direktori ini
-  - `ErrorLog ${APACHE_LOG_DIR}/error.log` : Menentukan lokasi file log error
-  - `CustomLog ${APACHE_LOG_DIR}/access.log` combined : Menentukan lokasi log akses
-  <br><br>
+    - `<VirtualHost *:80> `: menerima permintaan di semua alamat IP pada port 80 (HTTP)
+    - `DocumentRoot /var/www/si_gudang/public` : Menetapkan direktori utama apache
+    - `<Directory /var/www/si_gudang/public` : aturan konfigurasi folder public
+    - `Options Indexes FollowSymLinks` : Mengizinkan daftar isi direktori (jika tidak ada index) dan mengikuti symbolic link
+    - `AllowOverride All` : Mengizinkan file .htaccess
+    - `Require all granted` : Mengizinkan semua pengguna untuk mengakses direktori ini
+    - `ErrorLog ${APACHE_LOG_DIR}/error.log` : Menentukan lokasi file log error
+    - `CustomLog ${APACHE_LOG_DIR}/access.log` combined : Menentukan lokasi log akses
+    <br><br>
 3. Build image dari dockerfile yang sudah dibuat
     <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
       <pre style="margin: 0;"><code class="language-bash">
