@@ -103,7 +103,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 
 1. Masuk ke mysql
 
-    <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
+    <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 6px;">
       <pre style="margin: 0;"><code class="language-bash">
   sudo mysql -u root
       </code></pre>
@@ -119,7 +119,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 
 3. Membuat user mysql bernama `farel` dengan password `farel123`. Menggunakan % agar bisa diakses dari ip luar
 
-    <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
+    <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 16px;">
       <pre style="margin: 0;"><code class="language-bash">
   CREATE USER 'farel'@'%' IDENTIFIED BY 'farel123';
       </code></pre>
