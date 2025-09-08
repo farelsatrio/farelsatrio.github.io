@@ -179,7 +179,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
     - `COPY a2enmod rewrite` : Mengaktifkan modul rewrite di Apache
     - `COPY sistem-informasi-gudang-berbasis-web-laravel /var/www/` : Salin kode aplikasi Laravel ke direktori /var/www
     - `WORKDIR /var/www/si_gudang` : Set direktori kerja default ke lokasi aplikasi
-    - `RUN sed -i 's/DB_HOST=127.0.0.1/DB_HOST=10.10.10.123/g' .env && \`  : Ganti nilai DB_HOST di file .env. && berfungsi jika perintah ini berhasil maka jalankan perintah berikutnya. \ unutk melanjutkan perintah ke baris selanjutnya
+    - `RUN sed -i 's/DB_HOST=127.0.0.1/DB_HOST=10.10.10.123/g' .env && \`  : Ganti nilai DB_HOST di file .env. && berfungsi jika perintah ini berhasil maka jalankan perintah berikutnya. \ untuk melanjutkan perintah ke baris selanjutnya
     - `sed -i 's/DB_USERNAME=root/DB_USERNAME=farel/g' && \ `: Ganti nilai DB_USERNAME
     - `sed -i 's/DB_PASSWORD=/DB_PASSWORD=farel123/g' .env `: Ganti nilai DB_PASSWORD
     - `RUN chmod -R 775 /var/www/si_gudang && \` : Mengubah hak akses file agar bisa diakses oleh Apache
@@ -235,7 +235,9 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
   -	`--name exam` : buat nama container exam
   -	`-p 80:80` : Buka port 80 di host arahkan ke port 80 di container 
   - `exam` : Nama image yang digunakan
+
 ### F. Verifikasi
+
 - Cek aplikasi menggunakan browser
 ![Cek Brower](/assets/images/login.png)
   login menggunakan:
