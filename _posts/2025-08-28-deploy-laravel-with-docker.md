@@ -232,9 +232,9 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
   docker build -t exam .
       </code></pre>
     </div>
-  -	`docker build` : perintah untuk build image
-  -	`-t exam` : memberi nama pada image
-  -	`.`  :  lokasi dockerfile  berada di directory saat ini
+    -	`docker build` : perintah untuk build image
+    -	`-t exam` : memberi nama pada image
+    -	`.`  :  lokasi dockerfile  berada di directory saat ini
   <br><br>
 4. Menjalankan container dari image yang sudah di-build
 
@@ -243,11 +243,11 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
   docker run -d --name exam -p 80:80 exam
       </code></pre>
     </div>
-  -	`docker run` : Jalankan container dari image
-  -	`-d` : Jalankan di background
-  -	`--name exam` : buat nama container exam
-  -	`-p 80:80` : Buka port 80 di host arahkan ke port 80 di container 
-  - `exam` : Nama image yang digunakan
+    -	`docker run` : Jalankan container dari image
+    -	`-d` : Jalankan di background
+    -	`--name exam` : buat nama container exam
+    -	`-p 80:80` : Buka port 80 di host arahkan ke port 80 di container 
+    - `exam` : Nama image yang digunakan
 
 ### F. Verifikasi
 
