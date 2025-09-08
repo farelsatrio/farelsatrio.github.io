@@ -163,24 +163,23 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 
     <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
       <pre style="margin: 0;"><code class="language-dockerfile">
-  FROM php:7.4-apache
+    FROM php:7.4-apache
+    RUN apt update
+    RUN docker-php-ext-install pdo_mysql
+    COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+    COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+    RUN a2enmod rewrite
+    COPY sistem-informasi-gudang-berbasis-web-laravel /var/www/
+    WORKDIR /var/www/si_gudang/
 
-  RUN apt update
-  RUN docker-php-ext-install pdo_mysql
-  COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-  COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
-  RUN a2enmod rewrite
-  COPY sistem-informasi-gudang-berbasis-web-laravel /var/www/
-  WORKDIR /var/www/si_gudang/
+    RUN sed -i 's/DB_HOST=127.0.0.1/DB_HOST=10.10.10.123/g' .env \
+      && sed -i 's/DB_USERNAME=root/DB_USERNAME=farel/g' .env \
+      && sed -i 's/DB_PASSWORD=/DB_PASSWORD=farel123/g' .env
 
-  RUN sed -i 's/DB_HOST=127.0.0.1/DB_HOST=10.10.10.123/g' .env \
-    && sed -i 's/DB_USERNAME=root/DB_USERNAME=farel/g' .env \
-    && sed -i 's/DB_PASSWORD=/DB_PASSWORD=farel123/g' .env
+    RUN chmod -R 775 /var/www/si_gudang \
+      && chown -R www-data:www-data /var/www/si_gudang
 
-  RUN chmod -R 775 /var/www/si_gudang \
-    && chown -R www-data:www-data /var/www/si_gudang
-
-  CMD ["apache2-foreground"]
+    CMD ["apache2-foreground"]
       </code></pre>
     </div>
     - `FROM php:7.4-apache` : Base image yang digunakan adalah php:7.4-apache
@@ -202,19 +201,19 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 
     <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
       <pre style="margin: 0;"><code class="language-apache">
-  <VirtualHost *:80>
-      ServerAdmin webmaster@localhost
-      DocumentRoot /var/www/si_gudang/public
+    <VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/si_gudang/public
 
-      <Directory /var/www/si_gudang/public>
-          Options Indexes FollowSymLinks
-          AllowOverride All
-          Require all granted
-      </Directory>
+        <Directory /var/www/si_gudang/public>
+            Options Indexes FollowSymLinks
+            AllowOverride All
+            Require all granted
+        </Directory>
 
-      ErrorLog ${APACHE_LOG_DIR}/error.log
-      CustomLog ${APACHE_LOG_DIR}/access.log combined
-  </VirtualHost>
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+    </VirtualHost>
       </code></pre>
     </div>
     - `<VirtualHost *:80> `: menerima permintaan di semua alamat IP pada port 80 (HTTP)
