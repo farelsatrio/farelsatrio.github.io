@@ -41,62 +41,63 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 ### C. Siapkan source code
 
 1. Source code: [Download di sini](https://github.com/farelsatrio/sistem-informasi-gudang-berbasis-web-laravel.git)
+
 2. Tambahkan baris `<meta name="csrf-token" content="{{ csrf_token() }}" />` ke file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/resources/views/welcome.blade.php`
   Karena aplikasi menggunakan AJAX untuk berkomunikasi dengan backend Laravel, token CSRF diperlukan untuk memastikan permintaan aman.
-    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
-      <pre style="margin: 0;"><code class="language-html">
+    <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
+    <pre style="margin: 0;"><code class="language-html">
     <meta name=&quot;csrf-token&quot; content=&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;>
       </code></pre>
     </div>
-    <br><br>
+
 3. Edit file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/config/database.php`
   Ubah bagian `strict` menjadi `false` untuk mencegah terjadinya error saat menyimpan data:
-    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
-      <pre style="margin: 0;"><code class="language-bash">
+  <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
+    <pre style="margin: 0;"><code class="language-php">
     'strict' => false,
       </code></pre>
     </div>
-    <br><br>
+
 4. Edit file `sistem-informasi-gudang-berbasis-web-laravel/database/db_gudang.sql`. Ubah pada bagian trigger seperti di bawah untuk  memisahkan akhir blok trigger (END) dari akhir perintah SQL (;)
-    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
-    <pre style="margin: 0;"><code class="language-bash">
+    <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
+      <pre style="margin: 0;"><code class="language-sql">
     DROP TRIGGER IF EXISTS barang_masuk;
-    DELIMITER $$
-    CREATE TRIGGER `barang_masuk` AFTER INSERT ON `purchases` FOR EACH ROW BEGIN
-            UPDATE products SET stok_produk = stok_produk+NEW.qty_purchase
-        WHERE id_produk = NEW.id_produk;
-    END;
-    $$
-    DELIMITER ;
+      DELIMITER $$
+      CREATE TRIGGER `barang_masuk` AFTER INSERT ON `purchases` FOR EACH ROW BEGIN
+              UPDATE products SET stok_produk = stok_produk+NEW.qty_purchase
+          WHERE id_produk = NEW.id_produk;
+      END;
+      $$
+      DELIMITER ;
 
-    DROP TRIGGER IF EXISTS cancel_purchase;
-    DELIMITER $$
-    CREATE TRIGGER `cancel_purchase` AFTER DELETE ON `purchases` FOR EACH ROW BEGIN
-            UPDATE products SET stok_produk = products.stok_produk - OLD.qty_purchase
-            WHERE id_produk = OLD.id_produk;
-    END;
-    $$
-    DELIMITER ;
+      DROP TRIGGER IF EXISTS cancel_purchase;
+      DELIMITER $$
+      CREATE TRIGGER `cancel_purchase` AFTER DELETE ON `purchases` FOR EACH ROW BEGIN
+              UPDATE products SET stok_produk = products.stok_produk - OLD.qty_purchase
+              WHERE id_produk = OLD.id_produk;
+      END;
+      $$
+      DELIMITER ;
 
-    DROP TRIGGER IF EXISTS pengambilan;
-    DELIMITER $$
-    CREATE TRIGGER `pengambilan` AFTER INSERT ON `sells` FOR EACH ROW BEGIN
-            UPDATE products SET stok_produk = stok_produk-NEW.qty
-        WHERE id_produk = NEW.id_produk;
-    END;
-    $$
-    DELIMITER ;
+      DROP TRIGGER IF EXISTS pengambilan;
+      DELIMITER $$
+      CREATE TRIGGER `pengambilan` AFTER INSERT ON `sells` FOR EACH ROW BEGIN
+              UPDATE products SET stok_produk = stok_produk-NEW.qty
+          WHERE id_produk = NEW.id_produk;
+      END;
+      $$
+      DELIMITER ;
 
-    DROP TRIGGER IF EXISTS cancel_sell;
-    DELIMITER $$
-    CREATE TRIGGER `cancel_sell` AFTER DELETE ON `sells` FOR EACH ROW BEGIN
-            UPDATE products SET stok_produk = products.stok_produk + OLD.qty
-            WHERE id_produk = OLD.id_produk;
-    END;
-    $$
-    DELIMITER ;
+      DROP TRIGGER IF EXISTS cancel_sell;
+      DELIMITER $$
+      CREATE TRIGGER `cancel_sell` AFTER DELETE ON `sells` FOR EACH ROW BEGIN
+              UPDATE products SET stok_produk = products.stok_produk + OLD.qty
+              WHERE id_produk = OLD.id_produk;
+      END;
+      $$
+      DELIMITER ;
 
-    </code></pre>
+    </code></pre>  
     </div>
 
 ### D. Setup Database
@@ -256,6 +257,6 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
   login menggunakan:
    - username: admin
    - password: admin
-
+  <br><br>
 - Dashboard
 ![Dasboard](/assets/images/dashboard.png)
