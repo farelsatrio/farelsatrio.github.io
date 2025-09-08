@@ -102,23 +102,28 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 ### D. Setup Database
 
 1. Masuk ke mysql
-    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+
+    <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
       <pre style="margin: 0;"><code class="language-bash">
-    sudo mysql -u root
+  sudo mysql -u root
       </code></pre>
-    </div><br><br>
+    </div>
+
 2. Membuat database dengan nama `db_gudang` digunakan untuk database app laravel
-    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+
+    <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
       <pre style="margin: 0;"><code class="language-bash">
-    CREATE DATABASE db_gudang;
+  CREATE DATABASE db_gudang;
       </code></pre>
-    </div><br><br>
-3.  Membuat user mysql bernama `farel` dengan password `farel123`. Menggunakan % agar bisa diakses dari ip luar
-    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+    </div>
+
+3. Membuat user mysql bernama `farel` dengan password `farel123`. Menggunakan % agar bisa diakses dari ip luar
+
+    <div style="background-color: #000; color: white; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace; margin-bottom: 12px;">
       <pre style="margin: 0;"><code class="language-bash">
-    CREATE USER ‘farel’@’%’ IDENTIFIED BY ‘farel123’;
+  CREATE USER 'farel'@'%' IDENTIFIED BY 'farel123';
       </code></pre>
-    </div><br><br>
+    </div>
 4. Memberikan hak akses database `db_gudang` ke user `farel`
     <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px margin-bottom: 12px;; line-height: 1.4;">
       <pre style="margin: 0;"><code class="language-bash">
