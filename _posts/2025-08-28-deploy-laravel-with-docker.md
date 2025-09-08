@@ -260,3 +260,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
   <br><br>
 - Dashboard
 ![Dasboard](/assets/images/dashboard.png)
+
+## 4. Kesimpulan
+
+Deploy Laravel menggunakan Docker memungkinkan environment yang konsisten, portabel, dan mudah dikelola. Dengan konfigurasi yang tepat, aplikasi dapat dijalankan secara cepat.
