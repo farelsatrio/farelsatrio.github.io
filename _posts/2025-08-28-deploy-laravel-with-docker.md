@@ -218,13 +218,13 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
       </code></pre>
     </div>
     - `<VirtualHost *:80> `: menerima permintaan di semua alamat IP pada port 80 (HTTP)
-    - `DocumentRoot /var/www/si_gudang/public` : Menetapkan direktori utama apache
-    - `<Directory /var/www/si_gudang/public` : aturan konfigurasi folder public
+    - `DocumentRoot /var/www/si_gudang/public` : Menentukan direktori utama yang berisi file-file aplikasi web
+    - `<Directory /var/www/si_gudang/public` : Blok konfigurasi ini berisi aturan khusus yang berlaku hanya untuk direktori /var/www/si_gudang/public
     - `Options Indexes FollowSymLinks` : Mengizinkan daftar isi direktori (jika tidak ada index) dan mengikuti symbolic link
-    - `AllowOverride All` : Mengizinkan file .htaccess
+    - `AllowOverride All` : Memungkinkan file .htaccess yang berada di dalam direktori tersebut untuk mengubah pengaturan server secara lokal
     - `Require all granted` : Mengizinkan semua pengguna untuk mengakses direktori ini
     - `ErrorLog ${APACHE_LOG_DIR}/error.log` : Menentukan lokasi file log error
-    - `CustomLog ${APACHE_LOG_DIR}/access.log` combined : Menentukan lokasi log akses
+    - `CustomLog ${APACHE_LOG_DIR}/access.log combined` : Menentukan lokasi log akses
     <br><br>
 3. Build image dari Dockerfile yang sudah dibuat
 
@@ -233,8 +233,8 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
   docker build -t exam .
       </code></pre>
     </div>
-    -	`docker build` : perintah untuk build image
-    -	`-t exam` : memberi nama pada image
+    -	`docker build` : Perintah untuk build image
+    -	`-t exam` : Memberi nama pada image
     -	`.`  :  lokasi dockerfile  berada di directory saat ini
   <br><br>
 4. Menjalankan container dari image yang sudah di-build
@@ -246,7 +246,7 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
     </div>
     -	`docker run` : Jalankan container dari image
     -	`-d` : Jalankan di background
-    -	`--name exam` : buat nama container exam
+    -	`--name exam` : Buat nama container exam
     -	`-p 80:80` : Buka port 80 di host arahkan ke port 80 di container 
     - `exam` : Nama image yang digunakan
 
