@@ -102,75 +102,75 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
 ### D. Setup Database
 
 1. Masuk ke mysql
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
-    <pre style="margin: 0;"><code class="language-bash">
-  sudo mysql -u root
-    </code></pre>
-  </div><br><br>
+    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+      <pre style="margin: 0;"><code class="language-bash">
+    sudo mysql -u root
+      </code></pre>
+    </div><br><br>
 2. Membuat database dengan nama `db_gudang` digunakan untuk database app laravel
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
-    <pre style="margin: 0;"><code class="language-bash">
-  CREATE DATABASE db_gudang;
-    </code></pre>
-  </div><br><br>
+    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+      <pre style="margin: 0;"><code class="language-bash">
+    CREATE DATABASE db_gudang;
+      </code></pre>
+    </div><br><br>
 3.  Membuat user mysql bernama `farel` dengan password `farel123`. Menggunakan % agar bisa diakses dari ip luar
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
-    <pre style="margin: 0;"><code class="language-bash">
-  CREATE USER ‘farel’@’%’ IDENTIFIED BY ‘farel123’;
-    </code></pre>
-  </div><br><br>
+    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+      <pre style="margin: 0;"><code class="language-bash">
+    CREATE USER ‘farel’@’%’ IDENTIFIED BY ‘farel123’;
+      </code></pre>
+    </div><br><br>
 4. Memberikan hak akses database `db_gudang` ke user `farel`
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px margin-bottom: 12px;; line-height: 1.4;">
-    <pre style="margin: 0;"><code class="language-bash">
-  GRANT ALL PRIVILEGES ON db_gudang.* TO ‘farel’@’%’;
-    </code></pre>
-  </div><br><br>
+    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px margin-bottom: 12px;; line-height: 1.4;">
+      <pre style="margin: 0;"><code class="language-bash">
+    GRANT ALL PRIVILEGES ON db_gudang.* TO ‘farel’@’%’;
+      </code></pre>
+    </div><br><br>
 5. Simpan perubahan
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
-    <pre style="margin: 0;"><code class="language-bash">
-  FLUSH PRIVILEGES;
-    </code></pre>
-  </div><br><br>
-6. Edit file `/etc/mysql/mysql.conf.d/mysqld.cnf` agar bisa menerima koneksi dari semua alamat IP
+    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+      <pre style="margin: 0;"><code class="language-bash">
+    FLUSH PRIVILEGES;
+      </code></pre>
+    </div><br><br>
+6. Edit file `/etc/mysql/mysql.conf.d/mysqld.cnf` agar bisa menerima koneksi dari semua alamat IP.
   Edit bagian bind-address menjadi seperti berikut:
-    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
-    <pre style="margin: 0;"><code class="language-bash">
-  bind-address            = 0.0.0.0
-    </code></pre>
-  </div><br><br>
+      <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+      <pre style="margin: 0;"><code class="language-bash">
+    bind-address            = 0.0.0.0
+      </code></pre>
+      </div><br><br>
 7. Import database
-    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
-    <pre style="margin: 0;"><code class="language-bash">
-  sudo mysql -u root -p db_gudang < db_gudang.sql
-    </code></pre>
-  </div>
+      <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+      <pre style="margin: 0;"><code class="language-bash">
+    sudo mysql -u root -p db_gudang < db_gudang.sql
+      </code></pre>
+      </div>
 
 ### E. Deploy Laravel
 
 1. Buat `Dockerfile`
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
-    <pre style="margin: 0;"><code class="language-bash">
-  FROM php:7.4-apache
+    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+      <pre style="margin: 0;"><code class="language-bash">
+    FROM php:7.4-apache
 
-  RUN apt update
-  RUN docker-php-ext-install pdo_mysql
-  COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-  COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
-  RUN a2enmod rewrite
-  COPY sistem-informasi-gudang-berbasis-web-laravel /var/www/
-  WORKDIR /var/www/si_gudang/
+    RUN apt update
+    RUN docker-php-ext-install pdo_mysql
+    COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+    COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+    RUN a2enmod rewrite
+    COPY sistem-informasi-gudang-berbasis-web-laravel /var/www/
+    WORKDIR /var/www/si_gudang/
 
-  RUN sed -i 's/DB_HOST=127.0.0.1/DB_HOST=10.10.10.123/g' .env && \
-  sed -i 's/DB_USERNAME=root/DB_USERNAME=farel/g' .env && \
-  sed -i 's/DB_PASSWORD=/DB_PASSWORD=farel123/g' .env
+    RUN sed -i 's/DB_HOST=127.0.0.1/DB_HOST=10.10.10.123/g' .env && \
+    sed -i 's/DB_USERNAME=root/DB_USERNAME=farel/g' .env && \
+    sed -i 's/DB_PASSWORD=/DB_PASSWORD=farel123/g' .env
 
 
-  RUN chmod -R 775 /var/www/si_gudang && \
-  chown -R www-data:www-data /var/www/si_gudang
+    RUN chmod -R 775 /var/www/si_gudang && \
+    chown -R www-data:www-data /var/www/si_gudang
 
-  CMD ["apache2-foreground"]
-    </code></pre>
-  </div>
+    CMD ["apache2-foreground"]
+      </code></pre>
+    </div>
   - `FROM php:7.4-apache` : Base image yang digunakan adalah php:7.4-apache
   - `RUN apt update` : Perbarui package
   - `RUN docker-php-ext-install pdo_mysql` : Install ekstensi PHP untuk MySQL
@@ -187,24 +187,24 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
   - `CMD ["apache2-foreground"]` : Jalankan Apache di foreground agar container tetap jalan . Secara default, Apache berjalan di background dan container menganggap tidak ada proses yang aktif, lalu otomatis berhenti. Dengan apache2-foreground, Apache dijalankan sebagai proses utama di foreground, sehingga container tetap berjalan selama aplikasi aktif. 
   <br><br>
 2. Buat file 000-default.conf untuk konfigurasi apache  agar laravel bisa diakses
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
-    <pre style="margin: 0;"><code class="language-bash">
-  <VirtualHost *:80>
-                ServerAdmin webmaster@localhost
-                DocumentRoot /var/www/si_gudang/public
+    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+      <pre style="margin: 0;"><code class="language-bash">
+    <VirtualHost *:80>
+                  ServerAdmin webmaster@localhost
+                  DocumentRoot /var/www/si_gudang/public
 
-                <Directory /var/www/si_gudang/public>
-                Options Indexes FollowSymLinks
-                AllowOverride All
-                Require all granted
-                </Directory>
+                  <Directory /var/www/si_gudang/public>
+                  Options Indexes FollowSymLinks
+                  AllowOverride All
+                  Require all granted
+                  </Directory>
 
-                ErrorLog ${APACHE_LOG_DIR}/error.log
-                CustomLog ${APACHE_LOG_DIR}/access.log combined
+                  ErrorLog ${APACHE_LOG_DIR}/error.log
+                  CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-  </VirtualHost>
-    </code></pre>
-  </div>
+    </VirtualHost>
+      </code></pre>
+    </div>
   - `<VirtualHost *:80> `: menerima permintaan di semua alamat IP pada port 80 (HTTP)
   - `DocumentRoot /var/www/si_gudang/public` : Menetapkan direktori utama apache
   - `<Directory /var/www/si_gudang/public` : aturan konfigurasi folder public
@@ -215,21 +215,21 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
   - `CustomLog ${APACHE_LOG_DIR}/access.log` combined : Menentukan lokasi log akses
   <br><br>
 3. Build image dari dockerfile yang sudah dibuat
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
-    <pre style="margin: 0;"><code class="language-bash">
-  docker build -t exam .
-    </code></pre>
-  </div>
+    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+      <pre style="margin: 0;"><code class="language-bash">
+    docker build -t exam .
+      </code></pre>
+    </div>
   -	`docker build` : perintah untuk build image
   -	`-t exam` : memberi nama pada image
   -	`.`  :  lokasi dockerfile  berada di directory saat ini
   <br><br>
 4. Menjalankan container dari image yang sudah di build
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
-    <pre style="margin: 0;"><code class="language-bash">
-  docker run -d –-name  exam -p 80:80 exam
-    </code></pre>
-  </div>
+    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+      <pre style="margin: 0;"><code class="language-bash">
+    docker run -d –-name  exam -p 80:80 exam
+      </code></pre>
+    </div>
   -	`docker run` : Jalankan container dari image
   -	`-d` : Jalankan di background
   -	`--name exam` : buat nama container exam
