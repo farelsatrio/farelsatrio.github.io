@@ -48,97 +48,97 @@ Docker adalah platform open-source yang memanfaatkan teknologi containerization 
     <meta name=&quot;csrf-token&quot; content=&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;>
       </code></pre>
     </div>
+    <br><br>
 3. Edit file `sistem-informasi-gudang-berbasis-web-laravel/si_gudang/config/database.php`
   Ubah bagian `strict` menjadi `false` untuk mencegah terjadinya error saat menyimpan data:
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
-    <pre style="margin: 0;"><code class="language-bash">
-  'strict' => false,
-    </code></pre>
-  </div>
-  <br><br>
+    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.5; font-family: 'Courier New', monospace;">
+      <pre style="margin: 0;"><code class="language-bash">
+    'strict' => false,
+      </code></pre>
+    </div>
+    <br><br>
 4. Edit file `sistem-informasi-gudang-berbasis-web-laravel/database/db_gudang.sql`. Ubah pada bagian trigger seperti di bawah untuk  memisahkan akhir blok trigger (END) dari akhir perintah SQL (;)
-  <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
-  <pre style="margin: 0;"><code class="language-bash">
-  DROP TRIGGER IF EXISTS barang_masuk;
-  DELIMITER $$
-  CREATE TRIGGER `barang_masuk` AFTER INSERT ON `purchases` FOR EACH ROW BEGIN
-          UPDATE products SET stok_produk = stok_produk+NEW.qty_purchase
-      WHERE id_produk = NEW.id_produk;
-  END;
-  $$
-  DELIMITER ;
+    <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
+    <pre style="margin: 0;"><code class="language-bash">
+    DROP TRIGGER IF EXISTS barang_masuk;
+    DELIMITER $$
+    CREATE TRIGGER `barang_masuk` AFTER INSERT ON `purchases` FOR EACH ROW BEGIN
+            UPDATE products SET stok_produk = stok_produk+NEW.qty_purchase
+        WHERE id_produk = NEW.id_produk;
+    END;
+    $$
+    DELIMITER ;
 
-  DROP TRIGGER IF EXISTS cancel_purchase;
-  DELIMITER $$
-  CREATE TRIGGER `cancel_purchase` AFTER DELETE ON `purchases` FOR EACH ROW BEGIN
-          UPDATE products SET stok_produk = products.stok_produk - OLD.qty_purchase
-          WHERE id_produk = OLD.id_produk;
-  END;
-  $$
-  DELIMITER ;
+    DROP TRIGGER IF EXISTS cancel_purchase;
+    DELIMITER $$
+    CREATE TRIGGER `cancel_purchase` AFTER DELETE ON `purchases` FOR EACH ROW BEGIN
+            UPDATE products SET stok_produk = products.stok_produk - OLD.qty_purchase
+            WHERE id_produk = OLD.id_produk;
+    END;
+    $$
+    DELIMITER ;
 
-  DROP TRIGGER IF EXISTS pengambilan;
-  DELIMITER $$
-  CREATE TRIGGER `pengambilan` AFTER INSERT ON `sells` FOR EACH ROW BEGIN
-          UPDATE products SET stok_produk = stok_produk-NEW.qty
-      WHERE id_produk = NEW.id_produk;
-  END;
-  $$
-  DELIMITER ;
+    DROP TRIGGER IF EXISTS pengambilan;
+    DELIMITER $$
+    CREATE TRIGGER `pengambilan` AFTER INSERT ON `sells` FOR EACH ROW BEGIN
+            UPDATE products SET stok_produk = stok_produk-NEW.qty
+        WHERE id_produk = NEW.id_produk;
+    END;
+    $$
+    DELIMITER ;
 
-  DROP TRIGGER IF EXISTS cancel_sell;
-  DELIMITER $$
-  CREATE TRIGGER `cancel_sell` AFTER DELETE ON `sells` FOR EACH ROW BEGIN
-          UPDATE products SET stok_produk = products.stok_produk + OLD.qty
-          WHERE id_produk = OLD.id_produk;
-  END;
-  $$
-  DELIMITER ;
+    DROP TRIGGER IF EXISTS cancel_sell;
+    DELIMITER $$
+    CREATE TRIGGER `cancel_sell` AFTER DELETE ON `sells` FOR EACH ROW BEGIN
+            UPDATE products SET stok_produk = products.stok_produk + OLD.qty
+            WHERE id_produk = OLD.id_produk;
+    END;
+    $$
+    DELIMITER ;
 
-  </code></pre>
-  </div>
+    </code></pre>
+    </div>
 
 ### D. Setup Database
 
-- Masuk ke mysql
+1. Masuk ke mysql
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   sudo mysql -u root
     </code></pre>
   </div><br><br>
-- Membuat database dengan nama `db_gudang` digunakan untuk database app laravel
+2. Membuat database dengan nama `db_gudang` digunakan untuk database app laravel
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   CREATE DATABASE db_gudang;
     </code></pre>
   </div><br><br>
-- Membuat user mysql bernama `farel` dengan password `farel123`.
-Menggunakan % agar bisa diakses dari ip luar
+3.  Membuat user mysql bernama `farel` dengan password `farel123`. Menggunakan % agar bisa diakses dari ip luar
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   CREATE USER ‘farel’@’%’ IDENTIFIED BY ‘farel123’;
     </code></pre>
   </div><br><br>
-- Memberikan hak akses database `db_gudang` ke user `farel`
+4. Memberikan hak akses database `db_gudang` ke user `farel`
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px margin-bottom: 12px;; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   GRANT ALL PRIVILEGES ON db_gudang.* TO ‘farel’@’%’;
     </code></pre>
   </div><br><br>
-- Simpan perubahan
+5. Simpan perubahan
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   FLUSH PRIVILEGES;
     </code></pre>
   </div><br><br>
-- Edit file `/etc/mysql/mysql.conf.d/mysqld.cnf` agar bisa menerima koneksi dari semua alamat IP
+6. Edit file `/etc/mysql/mysql.conf.d/mysqld.cnf` agar bisa menerima koneksi dari semua alamat IP
   Edit bagian bind-address menjadi seperti berikut:
     <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   bind-address            = 0.0.0.0
     </code></pre>
   </div><br><br>
-- Import database
+7. Import database
     <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   sudo mysql -u root -p db_gudang < db_gudang.sql
@@ -147,7 +147,7 @@ Menggunakan % agar bisa diakses dari ip luar
 
 ### E. Deploy Laravel
 
-- Buat `Dockerfile`
+1. Buat `Dockerfile`
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   FROM php:7.4-apache
@@ -186,7 +186,7 @@ Menggunakan % agar bisa diakses dari ip luar
   - `chown -R www-data:www-data /var/www/si_gudang` : Mengubah kepemilikan file ke user www-data (user Apache)
   - `CMD ["apache2-foreground"]` : Jalankan Apache di foreground agar container tetap jalan . Secara default, Apache berjalan di background dan container menganggap tidak ada proses yang aktif, lalu otomatis berhenti. Dengan apache2-foreground, Apache dijalankan sebagai proses utama di foreground, sehingga container tetap berjalan selama aplikasi aktif. 
   <br><br>
-- Buat file 000-default.conf untuk konfigurasi apache  agar laravel bisa diakses
+2. Buat file 000-default.conf untuk konfigurasi apache  agar laravel bisa diakses
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   <VirtualHost *:80>
@@ -214,7 +214,7 @@ Menggunakan % agar bisa diakses dari ip luar
   - `ErrorLog ${APACHE_LOG_DIR}/error.log` : Menentukan lokasi file log error
   - `CustomLog ${APACHE_LOG_DIR}/access.log` combined : Menentukan lokasi log akses
   <br><br>
-- Build image dari dockerfile yang sudah dibuat
+3. Build image dari dockerfile yang sudah dibuat
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   docker build -t exam .
@@ -224,7 +224,7 @@ Menggunakan % agar bisa diakses dari ip luar
   -	`-t exam` : memberi nama pada image
   -	`.`  :  lokasi dockerfile  berada di directory saat ini
   <br><br>
-- Menjalankan container dari image yang sudah di build
+4. Menjalankan container dari image yang sudah di build
   <div style="background-color: #000; color: white; padding: 1px 12px; border-radius: 6px; overflow-x: auto; font-size: 16px; line-height: 1.4;">
     <pre style="margin: 0;"><code class="language-bash">
   docker run -d –-name  exam -p 80:80 exam
@@ -235,7 +235,7 @@ Menggunakan % agar bisa diakses dari ip luar
   -	`--name exam` : buat nama container exam
   -	`-p 80:80` : Buka port 80 di host arahkan ke port 80 di container 
   - `exam` : Nama image yang digunakan
-  <br><br>
+### F. Verifikasi
 - Cek aplikasi menggunakan browser
 ![Cek Brower](/assets/images/login.png)
   login menggunakan:
